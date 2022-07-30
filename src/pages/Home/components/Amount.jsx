@@ -36,6 +36,9 @@ function Amount({ amount, setAmount, period, setPeriod }) {
           inputmode="numeric"
           pattern="[0-9]*"
           //   onChange={onAmountChange}
+          onKeyPress={(event) => {
+            if (!/[0-9]/.test(event.key)) event.preventDefault();
+          }}
           onChange={(e) => setAmount(e.target.value)}
         />
         <Select options={periodOptions} value={period} onChange={setPeriod} />
