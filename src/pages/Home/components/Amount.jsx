@@ -9,19 +9,29 @@ const periodOptions = [
 ];
 
 function Amount({ amount, setAmount, period, setPeriod }) {
-  //   function onAmountChange(e) {
-  //     const eventValue = e.target.value;
-  //     const integerValue = +eventValue.replace(/,/g, "");
-  //     const isOutsideOfRange = integerValue > 99999999 || integerValue < 0;
-  //     const hasTooManyDecimalPlaces = !/^\d*(\.\d{0,2})?$/.test(
-  //       integerValue.toString()
-  //     );
-  //     if (isOutsideOfRange || hasTooManyDecimalPlaces) return;
+  function onAmountChange(e) {
+    const eventValue = e.target.value;
+    const integerValue = +eventValue.replace(/,/g, "");
+    const isOutsideOfRange = integerValue > 99999999 || integerValue < 0;
+    const hasTooManyDecimalPlaces = !/^\d*(\.\d{0,2})?$/.test(
+      integerValue.toString()
+    );
 
-  //     const endsWithDot = eventValue.endsWith(".") ? "." : "";
-  //     const newAmount = integerValue.toLocaleString() + endsWithDot;
-  //     setAmount(newAmount);
-  //   }
+    console.log({
+      amount,
+      eventValue,
+      integerValue,
+      isOutsideOfRange,
+      hasTooManyDecimalPlaces,
+    });
+    if (isOutsideOfRange || hasTooManyDecimalPlaces) return;
+
+    const endsWithDot = eventValue.endsWith(".") ? "." : "";
+    const newAmount =
+      new Intl.NumberFormat("en-US", { currency: "USD" }).format(integerValue) +
+      endsWithDot;
+    setAmount(newAmount);
+  }
 
   return (
     <div className="px-4 pb-7 flex-1">
@@ -33,13 +43,9 @@ function Amount({ amount, setAmount, period, setPeriod }) {
           symbol="$"
           value={amount}
           type="tel"
-          inputmode="numeric"
+          inputMode="numeric"
           pattern="[0-9]*"
-          //   onChange={onAmountChange}
-          onKeyPress={(event) => {
-            if (!/[0-9]/.test(event.key)) event.preventDefault();
-          }}
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={onAmountChange}
         />
         <Select options={periodOptions} value={period} onChange={setPeriod} />
       </div>
