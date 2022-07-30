@@ -43,7 +43,7 @@ function Amount({ amount, setAmount, period, setPeriod }) {
           symbol="$"
           value={amount}
           type="tel"
-          inputMode="numeric"
+          inputMode="decimal"
           onChange={onAmountChange}
         />
         <Select options={periodOptions} value={period} onChange={setPeriod} />
