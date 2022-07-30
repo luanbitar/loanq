@@ -8,7 +8,7 @@ function Select({ options, value, onChange }) {
 
   return (
     <div
-      className="appearance-none bg-emerald-400 text-white text-center px-6 rounded-r-full focus:outline-none relative items-center flex cursor-pointer"
+      className="appearance-none bg-accent text-white text-center px-6 rounded-r-full focus:outline-none relative items-center flex cursor-pointer select-none hover:bg-secondary"
       onClick={() => setIsShowingOptions(!isShowingOptions)}
     >
       <span className="flex items-center">
@@ -18,12 +18,12 @@ function Select({ options, value, onChange }) {
           <Arrow />
         </span>
       </span>
-      <div className="absolute top-[calc(100%+5px)] left-0 bg-emerald-400 rounded-md shadow-lg overflow-hidden">
+      <div className="absolute top-[calc(100%+5px)] left-0 bg-accent rounded-md shadow-lg overflow-hidden">
         {isShowingOptions &&
           options.map((option) => (
             <span
               key={option.label}
-              className="border-none p-4 hover:bg-emerald-500/40 block"
+              className="border-none p-4 hover:bg-secondary block"
               onClick={() => onChange(option.value)}
             >
               {option.label}

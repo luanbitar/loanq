@@ -17,8 +17,8 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
-    modules: ["node_modules", path.resolve("src")]
+    extensions: ["*", ".js", ".jsx"],
+    modules: ["node_modules", path.resolve("src")],
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -32,5 +32,9 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
+    hot: true,
+    open: true,
+    port: 3000
   },
+  devtool: "source-map"
 };
