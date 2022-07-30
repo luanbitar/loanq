@@ -31,8 +31,10 @@ function Amount({ amount, setAmount, period, setPeriod }) {
       <div className="mt-2 flex shadow-md rounded-full">
         <Input
           symbol="$"
-          type="number"
           value={amount}
+          type="tel"
+          inputmode="numeric"
+          pattern="[0-9]*"
           //   onChange={onAmountChange}
           onChange={(e) => setAmount(e.target.value)}
         />
