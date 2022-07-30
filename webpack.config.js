@@ -1,4 +1,5 @@
-const path = require('path')
+const path = require("path");
+const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -11,17 +12,25 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+    modules: ["node_modules", path.resolve("src")]
+  },
   plugins: [
+    new webpack.ProvidePlugin({
+      React: "react",
+    }),
+
     new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, './src/index.html'),
-      filename: 'index.html',
+      template: path.resolve(__dirname, "./src/index.html"),
+      filename: "index.html",
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
 };
