@@ -24,8 +24,8 @@ function Amount({ amount, setAmount, period, setPeriod }) {
   }
 
   return (
-    <div className="px-8 pt-6 pb-10 flex-1 ">
-      <p className="text-gray-600 text-center pt-4 pb-2">
+    <div className="px-4 pb-7 flex-1">
+      <p className="text-accent text-center pt-4 pb-2">
         What is your total income?
       </p>
       <div className="mt-2 flex shadow-md rounded-full">

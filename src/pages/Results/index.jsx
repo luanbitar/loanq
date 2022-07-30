@@ -3,18 +3,18 @@ import { useLocation, useNavigate } from "react-router";
 const TAX = 2.5;
 const INVERTED_TAX_CALC = 100 - TAX;
 
-function Results(props) {
+function Results() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const amount = location.state.amount;
+  const amount = location?.state?.amount;
 
   React.useEffect(() => {
     if (!location.state) return navigate("/");
   }, []);
 
   function calcTaxes() {
-    if (location.state.incomeType === "GROSS") {
+    if (location?.state?.incomeType === "GROSS") {
       const totalTaxValue = (amount / 100) * TAX;
       const totalNetIncome = amount - totalTaxValue;
       return {
@@ -31,7 +31,6 @@ function Results(props) {
     };
   }
 
-  console.log({ props, location });
   const { totalTaxValue, totalNetIncome } = calcTaxes();
   return (
     <div>
@@ -39,6 +38,7 @@ function Results(props) {
 
       <h3>amount: {amount}</h3>
       <h3>tax: {TAX}%</h3>
+
       <h3>total tax: {totalTaxValue}</h3>
       <h3>net: {totalNetIncome}</h3>
     </div>

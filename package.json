@@ -7,9 +7,11 @@
   "license": "MIT",
   "scripts": {
     "start": "concurrently --kill-others 'yarn start:js' 'yarn start:style'",
+    "build": "yarn build:style && yarn build:js",
     "start:js": "webpack-dev-server --mode development",
-    "start:style": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/tailwind.min.css --minify --watch",
-    "build": "webpack --mode production"
+    "start:style": "yarn build:style --watch",
+    "build:js": "webpack --mode production",
+    "build:style": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/tailwind.min.css --minify"
   },
   "dependencies": {
     "react": "18.2.0",
