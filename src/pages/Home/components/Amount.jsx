@@ -9,19 +9,19 @@ const periodOptions = [
 ];
 
 function Amount({ amount, setAmount, period, setPeriod }) {
-  function onAmountChange(e) {
-    const eventValue = e.target.value;
-    const integerValue = +eventValue.replace(/,/g, "");
-    const isOutsideOfRange = integerValue > 99999999 || integerValue < 0;
-    const hasTooManyDecimalPlaces = !/^\d*(\.\d{0,2})?$/.test(
-      integerValue.toString()
-    );
-    if (isOutsideOfRange || hasTooManyDecimalPlaces) return;
+  //   function onAmountChange(e) {
+  //     const eventValue = e.target.value;
+  //     const integerValue = +eventValue.replace(/,/g, "");
+  //     const isOutsideOfRange = integerValue > 99999999 || integerValue < 0;
+  //     const hasTooManyDecimalPlaces = !/^\d*(\.\d{0,2})?$/.test(
+  //       integerValue.toString()
+  //     );
+  //     if (isOutsideOfRange || hasTooManyDecimalPlaces) return;
 
-    const endsWithDot = eventValue.endsWith(".") ? "." : "";
-    const newAmount = integerValue.toLocaleString() + endsWithDot;
-    setAmount(newAmount);
-  }
+  //     const endsWithDot = eventValue.endsWith(".") ? "." : "";
+  //     const newAmount = integerValue.toLocaleString() + endsWithDot;
+  //     setAmount(newAmount);
+  //   }
 
   return (
     <div className="px-4 pb-7 flex-1">
@@ -29,7 +29,13 @@ function Amount({ amount, setAmount, period, setPeriod }) {
         What is your total income?
       </p>
       <div className="mt-2 flex shadow-md rounded-full">
-        <Input symbol="$" value={amount} onChange={onAmountChange} />
+        <Input
+          symbol="$"
+          type="number"
+          value={amount}
+          //   onChange={onAmountChange}
+          onChange={(e) => setAmount(e.target.value)}
+        />
         <Select options={periodOptions} value={period} onChange={setPeriod} />
       </div>
     </div>

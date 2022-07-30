@@ -4,7 +4,7 @@ import Amount from "./components/Amount";
 import CalcButton from "./components/CalcButton";
 
 function Home() {
-  const [amount, setAmount] = React.useState("0");
+  const [amount, setAmount] = React.useState("");
   const [period, setPeriod] = React.useState("MONTHLY");
   const [incomeType, setIncomeType] = React.useState("GROSS");
 
