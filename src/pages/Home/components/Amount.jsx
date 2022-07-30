@@ -39,14 +39,7 @@ function Amount({ amount, setAmount, period, setPeriod }) {
         What is your total income?
       </p>
       <div className="mt-2 flex shadow-md rounded-full">
-        <Input
-          symbol="$"
-          value={amount}
-          type="tel"
-          inputMode="numeric"
-          pattern="[0-9]*"
-          onChange={onAmountChange}
-        />
+        <Input symbol="$" value={amount} type="tel" onChange={onAmountChange} />
         <Select options={periodOptions} value={period} onChange={setPeriod} />
       </div>
     </div>
