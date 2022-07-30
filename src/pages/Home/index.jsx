@@ -1,4 +1,5 @@
 import Radio from "components/Radio";
+import HomeHeaderIcon from "icons/HomeHeaderIcon";
 import HomeIllustration from "icons/HomeIllustration";
 import Amount from "./components/Amount";
 import CalcButton from "./components/CalcButton";
@@ -9,11 +10,14 @@ function Home() {
   const [incomeType, setIncomeType] = React.useState("GROSS");
 
   return (
-    <div className="bg-white min-w-[100vw] min-h-[100vh] flex justify-center items-center flex-col sm:flex-row">
-      <div className="flex sm:pr-5 mt-10 mb-5 max-w-[250px] max-h-[200px]">
+    <div className="bg-white min-w-[100vw] min-h-[100vh] flex justify-center items-center flex-col md:flex-row relative">
+      <div className="absolute top-[-85px] w-[800px] md:top-[-320px] left-1/2 transform translate-x-[-50%] md:w-[2000px] m-auto">
+        <HomeHeaderIcon />
+      </div>
+      <div className="flex sm:pr-5 mt-10 md:mt-0 mb-5 max-w-[370px] max-h-[300px]  z-10">
         <HomeIllustration />
       </div>
-      <div className="max-w-[400px] flex-1">
+      <div className="max-w-[400px] flex-1 z-10">
         <Amount
           amount={amount}
           setAmount={setAmount}
