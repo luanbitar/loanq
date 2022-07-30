@@ -10,7 +10,7 @@ function Home() {
   const [incomeType, setIncomeType] = React.useState("GROSS");
 
   return (
-    <div className="bg-white min-w-[100vw] min-h-[100vh] flex justify-center items-center flex-col md:flex-row relative">
+    <div className="bg-white min-w-[100vw] min-h-[100vh] flex justify-center items-center flex-col md:flex-row relative overflow-hidden">
       <div className="absolute top-[-85px] w-[800px] md:top-[-320px] left-1/2 transform translate-x-[-50%] md:w-[2000px] m-auto">
         <HomeHeaderIcon />
       </div>
