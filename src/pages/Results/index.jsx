@@ -1,4 +1,3 @@
-import ResultsIllustration from "icons/ResultsIllustration";
 import { useLocation, useNavigate } from "react-router";
 
 const TAX = 2.5;
@@ -36,11 +35,9 @@ function Results() {
   return (
     <div className="bg-accent min-w-[100vw] min-h-[100vh] flex align-start md:align-center item-center">
       <div className="flex items-center justify-start md:justify-center w-full md:max-w-[1000px] md:m-auto flex-col md:flex-row">
-        <div className="max-w-[300px] h-[300px] max-h-[300px] flex-1">
-          <ResultsIllustration />
-        </div>
-
         <div className="bg-white h-[200px] w-full max-w-[500px]"></div>
+
+        <img src="/money-bg.png" alt="" />
       </div>
     </div>
   );
