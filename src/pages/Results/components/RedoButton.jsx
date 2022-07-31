@@ -10,10 +10,10 @@ function RedoButton() {
   return (
     <div className="px-5 max-w-[300px] w-full flex justify-center">
       <button
-        className="w-full bg-accent flex p-2 rounded-md justify-center mt-12"
+        className="w-full bg-accent flex p-2 rounded-md justify-center mt-12 a-spin-ease"
         onClick={onRedoClick}
       >
-        <div className="w-6 h-6">
+        <div className="w-6 h-6 animate-this">
           <Redo />
         </div>
         <span className="text-white">Redo</span>
