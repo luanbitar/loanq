@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -21,6 +22,15 @@ module.exports = {
     modules: ["node_modules", path.resolve("src")],
   },
   plugins: [
+    new CopyPlugin({
+        patterns: [
+          { from: "public", to: "." },
+        ],
+        options: {
+          concurrency: 100,
+        },
+      }),
+
     new webpack.ProvidePlugin({
       React: "react",
     }),
@@ -34,7 +44,7 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     open: true,
-    port: 3000
+    port: 3000,
   },
-  devtool: "source-map"
+  devtool: "source-map",
 };
