@@ -1,12 +1,6 @@
 import Input from "components/Input";
 import Select from "components/Select";
-
-const periodOptions = [
-  { label: "Weekly", value: "WEEKLY" },
-  { label: "Fortnightly", value: "FORTNIGHTLY" },
-  { label: "Monthly", value: "MONTHLY" },
-  { label: "Annually", value: "ANNUALLY" },
-];
+import periods from "constants/periods";
 
 function Amount({ amount, setAmount, period, setPeriod }) {
   function onAmountChange(e) {
@@ -17,13 +11,6 @@ function Amount({ amount, setAmount, period, setPeriod }) {
       integerValue.toString()
     );
 
-    console.log({
-      amount,
-      eventValue,
-      integerValue,
-      isOutsideOfRange,
-      hasTooManyDecimalPlaces,
-    });
     if (isOutsideOfRange || hasTooManyDecimalPlaces) return;
 
     const endsWithDot = eventValue.endsWith(".") ? "." : "";
@@ -46,7 +33,7 @@ function Amount({ amount, setAmount, period, setPeriod }) {
           inputMode="decimal"
           onChange={onAmountChange}
         />
-        <Select options={periodOptions} value={period} onChange={setPeriod} />
+        <Select options={periods} value={period} onChange={setPeriod} />
       </div>
     </div>
   );

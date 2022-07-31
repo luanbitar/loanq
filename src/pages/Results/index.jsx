@@ -1,43 +1,66 @@
 import { useLocation, useNavigate } from "react-router";
 
+import Description from "./components/Description";
+import PeriodsTabs from "./components/PeriodsTabs";
+import RedoButton from "./components/RedoButton";
+import ResultsBackground from "./components/ResultsBackground";
+import ResultsTotal from "./components/ResultsTotal";
+
 const TAX = 2.5;
 const INVERTED_TAX_CALC = 100 - TAX;
 
 function Results() {
-  const location = useLocation();
+  const { state } = useLocation();
   const navigate = useNavigate();
+  const [period, setPeriod] = React.useState(state?.period);
 
-  const amount = location?.state?.amount;
+  const amount = state?.amount;
 
   React.useEffect(() => {
-    if (!location.state) return navigate("/");
+    if (!state) return navigate("/");
   }, []);
 
   function calcTaxes() {
-    if (location?.state?.incomeType === "GROSS") {
+    if (state?.incomeType === "GROSS") {
       const totalTaxValue = (amount / 100) * TAX;
-      const totalNetIncome = amount - totalTaxValue;
+      const totalCalcIncome = amount - totalTaxValue;
       return {
         totalTaxValue,
-        totalNetIncome,
+        totalCalcIncome,
       };
     }
 
     const totalTaxValue = (amount / INVERTED_TAX_CALC) * TAX;
-    const totalNetIncome = amount + totalTaxValue;
+    const totalCalcIncome = amount + totalTaxValue;
     return {
       totalTaxValue,
-      totalNetIncome,
+      totalCalcIncome,
     };
   }
 
-  const { totalTaxValue, totalNetIncome } = calcTaxes();
-  return (
-    <div className="bg-accent min-w-[100vw] min-h-[100vh] flex align-start md:align-center item-center">
-      <div className="flex items-center justify-start md:justify-center w-full md:max-w-[1000px] md:m-auto flex-col md:flex-row">
-        <div className="bg-white h-[200px] w-full max-w-[500px]"></div>
+  const { totalTaxValue, totalCalcIncome } = calcTaxes();
 
-        <img src="/money-bg.png" alt="" />
+  return (
+    <div className="bg-accent min-w-[100vw] min-h-[100vh] flex justify-center items-center">
+      <ResultsBackground />
+      <div className="flex items-center justify-center w-full max-w-[1000px] m-auto flex-row relative px-4">
+        <div className="bg-white w-full max-w-[500px] z-10 rounded-3xl flex flex-col items-center pb-8">
+          <PeriodsTabs value={period} onChange={setPeriod} />
+
+          <ResultsTotal
+            incomeType={state?.incomeType}
+            total={totalCalcIncome}
+          />
+
+          <Description
+            TAX={TAX}
+            totalTaxValue={totalTaxValue}
+            incomeType={state.incomeType}
+            amount={state.amount}
+          />
+
+          <RedoButton />
+        </div>
       </div>
     </div>
   );

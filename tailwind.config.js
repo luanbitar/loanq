@@ -6,6 +6,10 @@ module.exports = {
       colors: {
         accent: "#63A375",
         secondary: "#5d9a6e",
+        spaceGray: {
+          300: "#606060",
+          400: "#555555",
+        },
       },
     },
   },
