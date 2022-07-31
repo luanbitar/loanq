@@ -15,7 +15,7 @@ function Home() {
         <div className="absolute top-[-85px] w-[800px] md:top-[-320px] left-1/2 transform translate-x-[-50%] md:w-[2000px] m-auto">
           <HomeHeaderIcon />
         </div>
-        <div className="flex sm:pr-5 mt-[197px] md:mt-0 mb-5 md:mb-[283px] max-w-[320px] md:max-w-[470px] max-h-[350px] z-10">
+        <div className="flex sm:pr-5 mt-[137px] md:mt-0 mb-5 md:mb-[283px] max-w-[320px] md:max-w-[470px] max-h-[350px] z-10">
           <HomeIllustration />
         </div>
         <div className="max-w-[400px] flex-1 z-10">
