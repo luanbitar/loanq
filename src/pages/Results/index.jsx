@@ -1,3 +1,4 @@
+import periods from "constants/periods";
 import { useLocation, useNavigate } from "react-router";
 
 import Description from "./components/Description";
@@ -13,12 +14,22 @@ function Results() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const [period, setPeriod] = React.useState(state?.period);
-
-  const amount = state?.amount;
+  const [amount, setAmount] = React.useState(state?.amount);
 
   React.useEffect(() => {
     if (!state) return navigate("/");
   }, []);
+
+  React.useEffect(() => {
+    const initialPeriod =
+      periods[periods.findIndex((prd) => prd.value === state.period)];
+    const currentPeriod =
+      periods[periods.findIndex((prd) => prd.value === period)];
+
+    setAmount(
+      (state.amount / initialPeriod.amountOfDays) * currentPeriod.amountOfDays
+    );
+  }, [period]);
 
   function calcTaxes() {
     if (state?.incomeType === "GROSS") {
@@ -56,7 +67,7 @@ function Results() {
             TAX={TAX}
             totalTaxValue={totalTaxValue}
             incomeType={state.incomeType}
-            amount={state.amount}
+            amount={amount}
           />
 
           <RedoButton />
